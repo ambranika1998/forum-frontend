@@ -1,17 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main>
+    <Nav/>
+    <router-view/>
+  </main>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Nav from "@/components/Nav.vue";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: {Nav},
+  data() {
+    return {
+      authenticated: false,
+      // this is only for testing purposes no actual app will have this
+      // an api call will validate user credentials
+      mockAccount: {
+        username: "ameyrupji",
+        password: "P@ssword!"
+      }
+    }
+  },
+  methods: {
+    setAuthenticated(status) {
+      this.authenticated = status;
+    },
+    logout() {
+      this.authenticated = false;
+    }
   }
 }
 </script>
@@ -23,6 +41,24 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  padding-right: 10px;
+}
+
+#nav a:not(:first-child) {
+  border-left: 1px solid #2c3e50;
+  padding-left: 10px;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
