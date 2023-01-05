@@ -33,10 +33,13 @@ export default {
   name: "Nav",
   setup(){
     const username = ref('username' in localStorage ? localStorage.getItem('username') : "")
-    const isAuthenticated = ref((!('token' in localStorage && localStorage.getItem('token') !== "")));
+    const isAuthenticated = ref(('token' in localStorage && localStorage.getItem('token') !== ""));
+    console.log(isAuthenticated.value)
+    console.log('token' in localStorage)
+    console.log(localStorage.getItem('token') !== "")
     return {
-      username,
-      isAuthenticated
+      username: username.value,
+      isAuthenticated: isAuthenticated.value
     }
   }
 }

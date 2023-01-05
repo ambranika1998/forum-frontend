@@ -34,9 +34,9 @@ import {ref} from "vue";
 export default {
   name: 'Profile',
   setup(){
-    const isAuthenticated = ref((!('token' in localStorage && localStorage.getItem('token') !== "")));
+    const isAuthenticated = ref(('token' in localStorage && localStorage.getItem('token') !== ""));
 
-    const user = ref(isAuthenticated ? JSON.parse(localStorage.getItem('user')) : null);
+    const user = ref(isAuthenticated.value ? JSON.parse(localStorage.getItem('user')) : null);
     let input = {
       username: "",
       first_name: "",
@@ -55,8 +55,8 @@ export default {
       }
     }
     return {
-      user,
-      isAuthenticated,
+      user: user.value,
+      isAuthenticated: isAuthenticated.value,
       input
     }
   }
